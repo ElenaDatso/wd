@@ -1,0 +1,13 @@
+  @import '../styles/styles.scss';
+
+  @mixin buttonAnim {
+    background: $green-accent-color;
+    mask: 
+      url( "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png"),
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    mask-size: 3000% 100%;
+    border: none;
+    font-weight: bold;
+    color: $bg-main-color;
+};

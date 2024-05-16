@@ -1,0 +1,92 @@
+@import '../../../libs/main.scss';
+.priceCol {
+  &_wrap {
+    box-shadow: $box-shadow;
+    background-color: $bg-main-color;
+    margin-top: calculateRem(40px);
+    transition: all 200ms;
+    height: 100%;
+    width: calculateRem(350px);
+    &__active {
+      margin-top: 0;
+      border: solid $green-accent-color 3px;
+    }
+  }
+  &_inner {
+    margin: calculateRem(48px);
+    margin-top: 0;
+    width: calculateRem(250px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: calculateRem(32px);
+      &__active {
+        margin-top: calculateRem(16px);
+      }
+  }
+
+  &_planName {
+    text-wrap: nowrap;
+    text-transform: capitalize;
+    font-weight:500;
+    font-size: calculateRem(24px);
+  }
+
+  &_iconWrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_priceRow{
+    display: flex;
+    gap: 0.25rem;
+    align-items: baseline;
+    &_from {
+      color: $green-accent-color;
+    }
+    &_numbers {
+      color: $green-accent-color;
+      font-size: calculateRem(42px);
+      font-weight: bold;
+    }
+    &_ft {
+      font-weight: 500;
+    }
+  }
+
+  @mixin marker {
+    position: absolute;
+    content: '';
+    width: calculateRem(16px);
+    height: calculateRem(16px);
+    background-repeat: no-repeat;
+    left: -1rem;
+    top: 0.5rem;
+  }
+  &_serviceLine {
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: wrap;;
+    &__included {
+      &::before {
+        @include marker;
+        background-image: url('/check-thick--check-form-validation-checkmark-success-add-addition-1-tick.svg');
+      }
+    }
+    &__notIncluded {
+      color: $font-light-gray-color;
+    }
+  }
+}
+
+.button {
+  &_wrap {
+    margin: calculateRem(48px);
+    height: fit-content;
+    margin-bottom: calculateRem(32px);
+  }
+
+}

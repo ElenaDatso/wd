@@ -1,0 +1,30 @@
+@import '../../../libs/main.scss';
+
+.tabWrap {
+  &_wrap {
+    position: relative;
+    width: auto;
+  }
+  &_tab {
+    padding: 0 36px;
+    height: 100%;
+    transition: 0.5s;
+    padding: 8px 24px;
+    color: $font-main-color;
+    transition: all 0ms;
+    &:hover {
+      cursor: pointer;
+    }
+    &__isActive {
+      mask: url(/tab_contour.svg);
+      mask-size: cover;
+      mask-repeat: no-repeat;
+      mask-position: right;
+      background-color: $green-accent-color;
+      color: $bg-main-color;
+      &__left {
+        mask-position: left;
+      }
+    }
+  }
+}

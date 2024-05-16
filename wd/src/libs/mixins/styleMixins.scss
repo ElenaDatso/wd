@@ -1,0 +1,59 @@
+@import './pxToRem.scss';
+
+
+@mixin h1Style {
+  font-size: calculateRem(32px);
+  line-height: calculateRem(38px);
+  font-weight: bold;
+  @media screen and (max-width: $tab) {
+    font-size: calculateRem(28px);
+    line-height: calculateRem(32px);
+  }
+}
+@mixin h2Style {
+  font-size: calculateRem(28px);
+  line-height: calculateRem(32px);
+  font-weight: bold;
+  width: fit-content;
+  margin: auto;
+  @media screen and (max-width: $tab) {
+    font-size: calculateRem(20px);
+    line-height: calculateRem(34px);
+  }
+}
+
+@mixin pStyle {
+
+}
+
+@mixin gridGap {
+  gap: calculateRem($grid-gap-screen);
+  @media screen and (max-width: $tab) {
+    gap: calculateRem($grid-gap-tab);
+  }
+}
+
+@mixin sectionMargin {
+  margin-bottom: calculateRem(60px);
+   @media screen and (max-width: $tab) {
+     margin-bottom: calculateRem(40px);
+   }
+}
+
+@mixin outerMargins {
+  margin-left: $outer-margin-screen;
+  margin-right: $outer-margin-screen;
+
+  @media screen and (max-width: $tab) {
+    margin-left: $outer-margin-tab;
+    margin-right: $outer-margin-tab;
+  }
+}
+
+@mixin sectionTitle {
+  @include h2Style;
+  margin-bottom: calculateRem(60px);
+  @media screen and (max-width: $tab) {
+    margin-bottom: calculateRem(40px);
+  }
+}

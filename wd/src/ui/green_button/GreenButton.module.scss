@@ -1,0 +1,20 @@
+@import '../../libs/main.scss';
+
+.GreenButton {
+  &_general {
+  position: relative;
+    box-shadow: $box-shadow;
+    width: max-content;
+    background-color: $green-accent-color;
+    color: $bg-main-color;
+    width: 100%;
+  }
+  &_button {
+    height: 100%;
+    text-align: center;
+    padding: 0.5rem;
+    &:hover {
+      font-weight: bolder;
+    }
+  }
+}

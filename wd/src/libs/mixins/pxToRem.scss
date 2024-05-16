@@ -1,0 +1,36 @@
+@import '../styles/styles.scss';
+
+$rootFontSize: 16px;
+
+@function calculateRem($size) {
+  $remSize: calc($size / $rootFontSize);
+  @return #{$remSize}rem;
+}
+
+@function calcLineHeight($fontSizePx, $lineHeightPx) {
+  $lineHeight: calc($lineHeightPx / $fontSizePx);
+  @return #{$lineHeight};
+}
+
+@function calcLetterSpacing($letterSpacePx, $fontSizePx) {
+  $letteSpace: calc($letterSpacePx / $fontSizePx);
+  @return #{$letteSpace}em;
+}
+
+@mixin fontSize($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@mixin heightSize($size) {
+  height: $size;
+  height: calculateRem($size);
+}
+
+@mixin lineHeightSize($fontSize, $lineHeight) {
+  line-height: calcLineHeight($fontSizePx, $lineHeightPx);
+}
+
+@mixin letterSpacingEmSize($letterSpacePx, $fontSizePx) {
+  letter-spacing: calcLetterSpacing($letterSpacePx, $fontSizePx);
+}

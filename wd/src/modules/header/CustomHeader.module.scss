@@ -1,0 +1,25 @@
+@import '../../libs/main.scss';
+
+.header{
+  &_general {
+    position: relative;
+    @include heightSize(48px);
+    box-shadow: $box-shadow;
+    z-index: 10;
+  }
+  &_wrap {
+    height: 100%;
+    @include outerMargins;
+  }
+
+    &_textLogo {
+    white-space: nowrap;
+    font-weight: bolder;
+    @include letterSpacingEmSize(4px, 16px);
+    color: $font-main-color;
+
+    & a {
+      cursor: default;
+    }
+  }
+}

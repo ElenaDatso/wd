@@ -1,0 +1,44 @@
+@import '../../libs/main.scss';
+.pricesSection {
+  position: relative;
+  &_bg {
+    position: absolute;
+    height:  calculateRem(600px);
+    width: 100%;
+    top: -6rem;
+    background:linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url('../../images/jpg/pricesbg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+    mask: url('/bgOvalMask.svg');
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-position: bottom;
+  }
+  &_wrap {
+    position: relative;
+    z-index: 1;
+  }
+  &_subscriptTabsWrap {
+    position: relative;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    &::before {
+      content: '';
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background-color: $bg-main-color;
+      bottom: -8px;
+    }
+  }
+  &_header {
+    @include h2Style;
+    color: $green-accent-color;
+    margin-bottom: 1rem;
+  }
+  &_inner {
+    @include outerMargins;
+  }
+}

@@ -1,0 +1,33 @@
+@import '../../libs/main.scss';
+
+.iconItem {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  position: relative;
+
+  &_link{
+      fill: $font-main-color;
+      position: relative;
+      transition: $basic-hover-transition;
+
+      svg {
+        fill: inherit;
+        height: 1rem;
+        width: auto;
+      }
+
+      &:hover {
+        fill: $green-accent-color;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120%;
+        height:  120%;
+        transform: translate(-50%, -50%);
+      }
+    }
+}

@@ -1,0 +1,12 @@
+@import '../../libs/main.scss';
+.serviceSection {
+  @include outerMargins;
+  @include sectionMargin;
+
+  &_title {
+    @include sectionTitle;
+  }
+  &_inner {
+    @include gridGap;
+  }
+}

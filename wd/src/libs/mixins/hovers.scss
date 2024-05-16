@@ -1,0 +1,6 @@
+@import '../styles/styles.scss';
+
+@mixin hoverEffectBg {
+  background-color: $green-accent-color;
+  transition: $basic-hover-transition;
+}
