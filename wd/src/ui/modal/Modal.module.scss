@@ -1,0 +1,29 @@
+@import '../../libs/main.scss';
+.closeCross {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin-left: auto;
+  display: block;
+
+  &::before {
+    content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  }
+  &:hover {
+    fill: $green-accent-color;
+  }
+  .cross {
+    fill: inherit;
+  }
+}
+
+
+  .form {
+    padding: 2rem;
+    padding-top: 0;
+  }

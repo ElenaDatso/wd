@@ -1,8 +1,11 @@
-import React, {useState, useEffect, ChangeEvent} from 'react';
+import React, {useState, useEffect, ChangeEvent, useRef} from 'react';
 import {PropType} from '../../libs/types/propety';
 import { subscriptionTypes } from '../../libs/types/subscriptions';
 import { Plans } from '../../libs/types/plans';
 import {propsPlansList} from '../../libs/data';
+import classes from './Calculator.module.scss';
+import CustomSelect from '../../ui/custom_select/CustomSelect';
+import GreenButton from '../../ui/green_button/GreenButton';
 
 type calcType = {
   preSetProperty: PropType;
@@ -19,6 +22,12 @@ function Calculator(props: calcType) {
   const [presetSubscript, resetSubscript] = useState(props.preSetSubscript);
   const [presetPlan, resetPlan] = useState(props.presetPlan);
   const [footage, resetFootage] = useState(0);
+  const [estimate, setEstimate] = useState(0);
+
+  const fNameRef = useRef(null);
+  const lNameRef = useRef(null);
+  const emailRef = useRef(null);
+  const phoneRef = useRef(null);
 
   useEffect(() => {
     resetProp(props.preSetProperty);
@@ -32,102 +41,127 @@ function Calculator(props: calcType) {
     resetPlan(props.presetPlan);
   }, [props.presetPlan]);
 
-  const changeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-    switch (event.currentTarget.name) {
+  useEffect(() => {
+    console.log('setEstimate');
+    setEstimate(
+      Number(
+        propsPlansList[presetProp][presetPlan].subscriprion[presetSubscript]
+      ) * footage
+    );
+  }, [presetPlan, presetProp, presetSubscript, footage])
+
+  const changeHandler = (name: string, value: string) => {
+    switch (name) {
       case 'prop_type':
-        resetProp(event.currentTarget.value as PropType);
+        resetProp(value as PropType);
         break;
       case 'service_subscription':
-        resetSubscript(event.currentTarget.value as subscriptionTypes);
+        resetSubscript(value as subscriptionTypes);
         break;
       case 'planType':
-        resetPlan(event.currentTarget.value as Plans);
+        resetPlan(value as Plans);
     }
   };
 
   return (
     <form>
-      <div className="flex">
-        <div>
-          <p>Estimate</p>
-          <p>Choose property type</p>
-          <div>
-            <select
-              name="prop_type"
-              value={presetProp}
-              onChange={(e: ChangeEvent<HTMLSelectElement>) => changeHandler(e)}
-            >
-              <option value={Properties.House}>House</option>
-              <option value={Properties.Office}>Office</option>
-            </select>
+      <div className="flex flex-grow gap-16">
+        <div className="basis-full">
+          <p className={`${classes.inputRow} ${classes.title} flex`}>
+            Estimate
+          </p>
+          <div className={`${classes.inputRow} flex`}>
+            <p className={`${classes.label}`}>Property type</p>
+            <CustomSelect
+              options={Object.keys(Properties)}
+              selected={presetProp}
+              onChange={(val: string) => changeHandler('prop_type', val)}
+            ></CustomSelect>
           </div>
-          <div>
-            <p>Type of service</p>
-            <select
-              name="service_subscription"
-              value={presetSubscript}
-              onChange={(e: ChangeEvent<HTMLSelectElement>) => changeHandler(e)}
-            >
-              <option value={subscriptions.oneTime}>One time service</option>
-              <option value={subscriptions.multiple}>Subscription</option>
-            </select>
+          <div className={`${classes.inputRow} flex`}>
+            <p className={`${classes.label}`}>Service type</p>
+            <CustomSelect
+              options={Object.keys(subscriptions)}
+              selected={presetSubscript}
+              onChange={(val: string) =>
+                changeHandler('service_subscription', val)
+              }
+            ></CustomSelect>
           </div>
-          <div>
-            <p>Total footage</p>
+          <div className={`${classes.inputRow} flex`}>
+            <p className={`${classes.label}`}>Total footage</p>
             <input
+              name="footage"
+              id="footage"
               type="number"
               min={0}
               max={9999}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => resetFootage(Number(e.currentTarget.value))}
+              placeholder="0"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                resetFootage(Number(e.currentTarget.value))
+              }
+            ></input>
+          </div>
+          <div className={`${classes.inputRow} flex`}>
+            <p className={`${classes.label}`}>Plan</p>
+            <CustomSelect
+              options={Object.keys(Plan)}
+              selected={presetPlan}
+              onChange={(val: string) => changeHandler('planType', val)}
+            ></CustomSelect>
+          </div>
+          <div className={`${classes.inputRow} flex`}>
+            <label className={`${classes.label}`} htmlFor="date">
+              Date and time
+            </label>
+            <input id="date" name="date" type="date"></input>
+          </div>
+          <hr className={`${classes.inputRow} flex`} />
+          <p>
+            Estimate total:
+            {`${estimate} CAD`}
+          </p>
+        </div>
+        <div className="basis-1/3">
+          <p className={` ${classes.title}`}>Contact information</p>
+          <div>
+            <input
+              ref={fNameRef}
+              type="text"
+              id="f-name"
+              placeholder="First name"
             ></input>
           </div>
           <div>
-            <p>Chosen Plan</p>
-            <select
-              name="planType"
-              value={presetPlan}
-              onChange={(e: ChangeEvent<HTMLSelectElement>) => changeHandler(e)}
-            >
-              <option value={Plan.basic}>Basic</option>
-              <option value={Plan.advanced}>Advanced</option>
-              <option value={Plan['all-inclusive']}>All inclusive</option>
-            </select>
-          </div>
-          <input type="date"></input>
-          <hr />
-          <p>
-            Estimate total:
-            {
-              Number(propsPlansList[presetProp][presetPlan].subscriprion[
-                presetSubscript
-              ]) * footage
-            } CAD
-          </p>
-        </div>
-        <div>
-          <p>Contact information</p>
-          <div>
-            <input type="text" id="name" placeholder="Your Name"></input>
-            <label>First and last name</label>
+            <input
+              ref={lNameRef}
+              type="text"
+              id="l-name"
+              placeholder="Last name"
+            ></input>
           </div>
           <div>
             <input
+              ref={phoneRef}
               type="number"
               placeholder="1(xxx)xxx-xx-xx"
               id="phone"
             ></input>
-            <label>Contact number</label>
           </div>
           <div>
             <input
+              ref={emailRef}
               type="text"
               placeholder="your-email@hosting.com"
               id="email"
             ></input>
-            <label>E-mail</label>
           </div>
         </div>
-        <input type="submit"></input>
+      </div>
+      <div className={`${classes.buttonWrap}`}>
+        <GreenButton>
+          {<input value={'Request cleaning'} type="submit"></input>}
+        </GreenButton>
       </div>
     </form>
   );

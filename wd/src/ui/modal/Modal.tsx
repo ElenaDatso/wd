@@ -1,7 +1,8 @@
 import React, { MutableRefObject, ReactNode,forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import useMousePosition from '../../libs/hooks/useMousePosition';
-
+import { MdClose } from 'react-icons/md';
+import classes from './Modal.module.scss';
 
 const Modal = forwardRef(function Modal(props: {children: ReactNode}, ref) {
 
@@ -37,11 +38,13 @@ const Modal = forwardRef(function Modal(props: {children: ReactNode}, ref) {
   }
 
   return createPortal(
-    <dialog onClick={dialogClickHandler} className='m-auto' ref={dialog}>
-      <form method='dialog'>
-        <button>Close</button>
+    <dialog onClick={dialogClickHandler} className={`m-auto`} ref={dialog}>
+      <form method="dialog">
+        <button className={`${classes.closeCross}`}>
+          <MdClose className={`${classes.cross}`}></MdClose>
+        </button>
       </form>
-        {props.children}
+      <div className={`${classes.form}`}>{props.children}</div>
     </dialog>,
     document.getElementById('modal-root') as HTMLElement
   );

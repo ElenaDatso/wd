@@ -16,6 +16,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  word-wrap: none;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -37,4 +38,57 @@ img, svg {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select option {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  padding: 10px;
+}
+
+select option:hover {
+  background-color: #f0f0f0;
+}
+
+select option:checked {
+  background-color: #e0e0e0;
+}
+
+select:hover {
+  background-color: #f0f0f0;
+}
+
+select:focus {
+  background-color: #e0e0e0;
+}
+
+select::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000000;
+  transform: translateY(-50%);
 }

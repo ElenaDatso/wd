@@ -2,10 +2,10 @@ import Mailjet from 'node-mailjet';
 
 const mailjet = Mailjet.apiConnect(
   'e0f6603eb04f776229eb74cbb09a70b5',
-  '9be61be080d63a5a6b0dea5b28fe69a3'
+  'a53697a3ad4c586f3b0d04b1fa01fbe7'
 );
 
-const request = mailjet.post('send', { version: 'v3.1' }).request({
+export const request = mailjet.post('send', { version: 'v3.1' }).request({
   Messages: [
     {
       From: {
@@ -27,10 +27,10 @@ const request = mailjet.post('send', { version: 'v3.1' }).request({
   ],
 });
 
-request
-  .then((result) => {
-    console.log(result.body);
-  })
-  .catch((err) => {
-    console.log(err.statusCode);
-  });
+// request
+//   .then((result) => {
+//     console.log(result.body);
+//   })
+//   .catch((err) => {
+//     console.log(err.statusCode);
+//   });

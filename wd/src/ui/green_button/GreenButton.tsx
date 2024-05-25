@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classes from './GreenButton.module.scss';
 
-function GreenButton(props: { itemText: string }) {
+function GreenButton(props: { children: ReactNode }) {
   return (
     <button
       className={`${classes.GreenButton_general}`}
     >
       <div className={`${classes.GreenButton_button}`}>
-        <span className={`${classes.GreenButton_span}`}>
-          {props.itemText}
-        </span>
+          {props.children}
       </div>
     </button>
   );

@@ -156,7 +156,7 @@ function PricesColumn(props: PricesColType) {
             className={`${classes['button_wrap']}`}
             onClick={() => props.onBookingClick()}
           >
-            <GreenButton itemText={'Estimate & book'}></GreenButton>
+            <GreenButton>{<span>Estimate & book</span>}</GreenButton>
           </div>
         )}
       </div>
